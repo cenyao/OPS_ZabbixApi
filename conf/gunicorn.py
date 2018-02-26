@@ -8,8 +8,11 @@ gevent.monkey.patch_all()
 
 loglevel = 'info'
 bind = '127.0.0.1:5000'
-pidfile = 'logs/gunicorn.pid'
-logfile = 'logs/debug.log'
+pidfile = '/tmp/gunicorn.pid'
+accesslog = '/data/log/zabbix_log/gunicorn-access.log'
+errorlog = '/data/log/zabbix_log/gunicorn-error.log'
+timeout = 30
+backlog = 2048
 
 #启动的进程数
 workers = multiprocessing.cpu_count() * 2 + 1
