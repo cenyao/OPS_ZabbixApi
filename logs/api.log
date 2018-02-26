@@ -80,3 +80,5 @@
 2018-02-26 11:46:15,754 - api - INFO - Api:[根据名称查询对于的自动注册动作] Name:[zabbix_server] Result:[True]
 2018-02-26 11:46:36,524 - api - INFO - Api:[根据名称查询对于的自动注册动作] Name:[zabbix_server ] Result:[True]
 2018-02-26 11:46:41,102 - api - WARNING - Api:[根据名称查询对于的自动注册动作] Name:[zabbix_server-] Result:[False]
+2018-02-26 14:57:54,502 - api - INFO - Api:[根据ip查询是否有对应的监控] Ip:[127.0.0.1] Result:[True]
+2018-02-26 14:58:01,517 - api - INFO - Api:[根据ip查询是否有对应的监控] Ip:[127.0.0.1] Result:[True]

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- encoding: utf8 -*-
 import os
 import logging
@@ -21,4 +21,4 @@ LOG_TYPES = {
     'api': 'api.log'
 }
 
-FLASK_HOST = '0.0.0.0'
+# FLASK_HOST = '127.0.0.1'
