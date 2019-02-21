@@ -75,7 +75,7 @@ def host_status(host_ip):
     return result_data
 
 
-def host_delect(host_ip):
+def host_delete(host_ip):
     _host = is_monitor(host_ip)
     # print(_host)
     result_data['api'] = "根据ip删除对应的监控"

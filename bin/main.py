@@ -82,7 +82,7 @@ def host_delete():
     if not request.json or 'host_ip' not in request.json:
         abort(405)
     host_ip = request.json['host_ip']
-    _host = host.host_delect(host_ip)
+    _host = host.host_delete(host_ip)
     if _host['status']:
         api_logger.info("Api:[%s] Ip:[%s] Result:[%s]" % (_host['api'], host_ip, _host['status']))
     else:

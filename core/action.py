@@ -16,7 +16,7 @@ result_data = {}
 
 
 def is_autoregistration(autoregistration_name):
-    result_data['api'] = "根据名称查询对于的自动注册动作"
+    result_data['api'] = "根据名称查询对应的自动注册动作"
     autoregistration_json = {
         "method": "action.get",
         "params": {
