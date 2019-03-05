@@ -175,6 +175,20 @@ def maintenance_create():
         data['api'] = "根据ip修改对应监控主机的监控状态"
         return jsonify(data)
 
+
+@app.route('/api/v1.0/maintenance/maintenance_delete', methods=['POST'])
+def maintenance_delete():
+    if not request.json or 'maintenanceid' not in request.json:
+        abort(405)
+    maintenanceid = request.json['maintenanceid']
+    _maintenance = maintenance.maintenance_delete(maintenanceid)
+    if _maintenance['status']:
+        api_logger.info("Api:[%s] Ip:[%s] Result:[%s]" % (_maintenance['api'], maintenanceid, _maintenance['status']))
+    else:
+        api_logger.warning("Api:[%s] Ip:[%s] Result:[%s]" % (_maintenance['api'], maintenanceid, _maintenance['status']))
+    return jsonify(_maintenance)
+
+
 @app.route('/api/v1.0/action/is_autoregistration', methods=['POST'])
 def is_autoregistration():
     if not request.json or 'autoregistration_name' not in request.json:

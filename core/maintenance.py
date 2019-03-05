@@ -53,9 +53,12 @@ def maintenance_create(host_ip, start_time, end_time):
         # print(_host)
         result_data['api'] = "根据ip新增对应监控主机的维护计划"
         if _host['status']:
-            status = _host['result']['maintenance_status']
-            if status == '0':
-                acc_hostid.append(_host['result']['hostid'])
+            if _host['result']['status'] == '0':
+                status = _host['result']['maintenance_status']
+                if status == '0':
+                    acc_hostid.append(_host['result']['hostid'])
+                else:
+                    err_ips.append(ip)
             else:
                 err_ips.append(ip)
         else:
@@ -85,6 +88,7 @@ def maintenance_create(host_ip, start_time, end_time):
             if err_ips:
                 maintenance['info'] = "请到zabbix上检查这些ip（%s）对应监控的状态是否正常，没有添加到维护计划当中！" % ','.join(str(n) for n in err_ips)
                 maintenance['err_ips'] = err_ips
+            maintenance['maintenance_name'] = maintenance_name
             result_data['result'] = maintenance
             result_data['status'] = True
         else:
@@ -92,5 +96,22 @@ def maintenance_create(host_ip, start_time, end_time):
             result_data['status'] = False
     else:
         result_data['result'] = '选择的ip对应的监控状态都不正常，创建维护计划失败！'
+        result_data['status'] = False
+    return result_data
+
+
+def maintenance_delete(maintenanceid):
+    result_data['api'] = "根据维护计划id删除维护计划"
+    maintenanceid = maintenanceid.split(',')
+    maintenancedelete_json = {
+        "method": "maintenance.delete",
+        "params":  maintenanceid
+    }
+    maintenance = Zabbix(maintenancedelete_json).api_post()
+    if maintenance:
+        result_data['result'] = maintenance
+        result_data['status'] = True
+    else:
+        result_data['result'] = '删除维护计划失败！'
         result_data['status'] = False
     return result_data
